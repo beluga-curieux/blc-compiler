@@ -5,6 +5,7 @@ def pretretement(src):
 
     text = sup_comentaire(text)
     text = sup_lignes_vides(text)
+    text = sup_espace(text)
 
     save(src, text)
 
@@ -17,4 +18,8 @@ def sup_comentaire(text):
     return re.sub(r'\/\/.*$', '', text, flags=re.MULTILINE)
 
 def sup_lignes_vides(text):
-    return re.sub(r'^\s*\n|\n$', '', text, flags=re.MULTILINE)
+    text = re.sub(r'\n$', '', text, flags=re.MULTILINE)
+    return re.sub(r'^\s*\n', '', text, flags=re.MULTILINE)
+
+def sup_espace(text):
+    return re.sub(r'^\s+|\s+$', '', text, flags=re.MULTILINE)
